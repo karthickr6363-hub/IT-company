@@ -1,0 +1,26 @@
+.card {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: var(--yellow);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+  background-color: var(--bg-secondary);
+}
+
+.card h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
