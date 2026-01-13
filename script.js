@@ -8,8 +8,8 @@ if (hamburger && navMenu) {
         hamburger.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    // Close menu when clicking on a link (but not dropdown toggle)
+    const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
@@ -29,15 +29,19 @@ if (hamburger && navMenu) {
 // Dropdown Menu Toggle for Mobile
 document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = document.querySelectorAll('.dropdown');
+    const navMenu = document.getElementById('navMenu');
+    const hamburger = document.getElementById('hamburger');
     
     dropdowns.forEach(dropdown => {
         const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+        const dropdownLinks = dropdown.querySelectorAll('.dropdown-menu a');
         
         if (dropdownToggle) {
             // Handle click on mobile devices
             dropdownToggle.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                     
                     // Close other dropdowns
@@ -47,6 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }
+            });
+        }
+
+        // Close mobile menu when clicking dropdown links on mobile
+        if (dropdownLinks.length > 0) {
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        if (navMenu) navMenu.classList.remove('active');
+                        if (hamburger) hamburger.classList.remove('active');
+                        dropdown.classList.remove('active');
+                    }
+                });
             });
         }
     });
@@ -60,6 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
+    });
+
+    // Handle window resize to reset dropdowns
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }, 250);
     });
 });
 

@@ -32,6 +32,42 @@
     border: 1px solid var(--medium-gray);
 }
 
+@media (max-width: 768px) {
+    [data-theme="light"] .nav-menu {
+        background-color: var(--primary-white);
+        border-bottom: 1px solid var(--medium-gray);
+    }
+
+    [data-theme="light"] .nav-menu a {
+        color: var(--primary-black);
+    }
+
+    [data-theme="light"] .nav-menu a:hover,
+    [data-theme="light"] .nav-menu a.active {
+        color: var(--primary-yellow);
+        background-color: var(--light-gray);
+    }
+
+    [data-theme="light"] .dropdown-toggle:hover {
+        background-color: var(--light-gray);
+    }
+
+    [data-theme="light"] .dropdown-menu {
+        background-color: var(--light-gray);
+        border-top: 1px solid var(--medium-gray);
+    }
+
+    [data-theme="light"] .dropdown-menu li {
+        border-bottom: 1px solid var(--medium-gray);
+    }
+
+    [data-theme="light"] .dropdown-menu a:hover,
+    [data-theme="light"] .dropdown-menu a:active {
+        background-color: var(--medium-gray);
+        color: var(--primary-yellow);
+    }
+}
+
 [data-theme="light"] .hero::before {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(245, 245, 245, 0.4) 100%);
 }
@@ -48,6 +84,18 @@
 
 [data-theme="light"] .btn-secondary:hover {
     background-color: var(--primary-yellow);
+    color: var(--primary-black);
+}
+
+[data-theme="light"] .btn-course {
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+    border-color: var(--primary-yellow);
+}
+
+[data-theme="light"] .btn-course:hover {
+    background-color: var(--yellow-hover);
+    border-color: var(--yellow-hover);
     color: var(--primary-black);
 }
 
@@ -73,6 +121,12 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     animation: fadeIn 1.2s ease-out;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -636,8 +690,30 @@ body {
 
 .btn-course {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     text-align: center;
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+    border: 2px solid var(--primary-yellow);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 30px;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.btn-course:hover {
+    background-color: var(--yellow-hover);
+    border-color: var(--yellow-hover);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    color: var(--primary-black);
+}
+
+.btn-course:active {
+    transform: translateY(-1px) scale(1);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 /* Home About Section */
@@ -1842,8 +1918,11 @@ body {
         text-align: center;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
+        padding: 0;
         border-bottom: 1px solid var(--medium-gray);
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1852,6 +1931,42 @@ body {
 
     .dropdown {
         width: 100%;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--medium-gray);
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding: 15px 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .dropdown-toggle:hover {
+        background-color: var(--dark-gray);
+    }
+
+    .dropdown-arrow {
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
     }
 
     .dropdown-menu {
@@ -1868,26 +1983,45 @@ body {
         background-color: var(--dark-gray);
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 0;
     }
 
     .dropdown.active .dropdown-menu {
-        max-height: 400px;
+        max-height: 500px;
+        padding: 0.5rem 0;
     }
 
     .dropdown-menu li {
         border-bottom: 1px solid var(--medium-gray);
     }
 
+    .dropdown-menu li:last-child {
+        border-bottom: none;
+    }
+
     .dropdown-menu a {
         padding: 15px 20px;
         border-left: none;
+        display: block;
+        width: 100%;
+        transition: all 0.3s ease;
     }
 
-    .dropdown-menu a:hover {
-        padding-left: 20px;
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active {
+        padding-left: 25px;
         border-left: none;
+        background-color: var(--medium-gray);
+        color: var(--primary-yellow);
+    }
+
+    .dropdown-menu a:focus {
+        outline: 2px solid var(--primary-yellow);
+        outline-offset: -2px;
+    }
+
+    .dropdown-menu a:active {
         background-color: var(--medium-gray);
     }
 
@@ -1922,32 +2056,18 @@ body {
 
     .home-about-content {
         grid-template-columns: 1fr;
-    }
-
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .services-overview-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .home-about-content {
-        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .home-about-text .section-title {
         text-align: center;
+        font-size: 2rem;
     }
 
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+        padding: 1.5rem 0;
     }
 
     .services-overview-grid {
@@ -1960,6 +2080,20 @@ body {
 
     .features-grid {
         grid-template-columns: 1fr;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .about-image-content,
+    .home-about-image .about-image-content {
+        height: 300px;
     }
 
     .partners-grid {
@@ -2307,6 +2441,10 @@ body {
         font-size: 2rem;
     }
 
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
     .section-title {
         font-size: 2rem;
     }
@@ -2317,15 +2455,21 @@ body {
 
     .home-about-text .section-title {
         text-align: center;
+        font-size: 1.75rem;
     }
 
     .about-stats {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 1rem 0;
     }
 
     .stat-number {
         font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
     }
 
     .lead-text {
@@ -2336,13 +2480,276 @@ body {
         font-size: 2rem;
     }
 
+    .page-header p {
+        font-size: 1rem;
+    }
+
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.75rem;
     }
 
     .btn {
         width: 100%;
         text-align: center;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .service-card,
+    .course-card,
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .page-header {
+        padding: 2.5rem 0;
+    }
+
+    .logo-name {
+        font-size: 1rem;
+    }
+
+    .logo-tagline {
+        font-size: 0.55rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-ring {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .partner-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .partner-card {
+        min-height: 150px;
+        padding: 1rem;
+    }
+
+    .partner-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .chatbox-container {
+        width: calc(100% - 20px);
+        right: 10px;
+        bottom: 90px;
+        height: calc(100vh - 120px);
+        max-height: 400px;
+    }
+
+    .chatbox-toggle {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .chatbox-toggle .chat-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .chatbox-badge {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+    }
+
+    .service-card,
+    .course-card,
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .page-header {
+        padding: 2.5rem 0;
+    }
+
+    .logo-name {
+        font-size: 1rem;
+    }
+
+    .logo-tagline {
+        font-size: 0.55rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-ring {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .chatbox-header {
+        padding: 0.75rem;
+    }
+
+    .chatbox-header-text h4 {
+        font-size: 1rem;
+    }
+
+    .chatbox-header-text p {
+        font-size: 0.75rem;
+    }
+
+    .chatbox-messages {
+        padding: 1rem;
+    }
+
+    .chatbox-input-container {
+        padding: 0.75rem;
+    }
+
+    .chatbox-input {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+    }
+
+    .chatbox-send {
+        width: 40px;
+        height: 40px;
+    }
+
+    .message-content {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+    }
+
+    .message-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .message-avatar svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .home-about,
+    .features,
+    .testimonials,
+    .partners-section {
+        padding: 3rem 0;
+    }
+
+    .services-content,
+    .courses-content,
+    .contact-content,
+    .about-content {
+        padding: 3rem 0;
+    }
+
+    .cta {
+        padding: 3rem 0;
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+    }
+
+    .cta p {
+        font-size: 1rem;
     }
 }
