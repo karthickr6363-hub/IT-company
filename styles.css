@@ -1082,6 +1082,29 @@ body {
     line-height: 1.8;
 }
 
+.about-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+}
+
+.about-text ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+    color: var(--light-gray);
+    line-height: 1.8;
+}
+
+.about-text ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-yellow);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .about-image {
     background-color: var(--medium-gray);
     border-radius: 10px;
@@ -1862,6 +1885,56 @@ body {
     color: var(--primary-yellow);
 }
 
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--dark-gray);
+    border-radius: 50%;
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.social-icons a svg {
+    width: 22px;
+    height: 22px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    border-color: var(--primary-yellow);
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+}
+
+.social-icons a:hover svg {
+    transform: scale(1.1);
+}
+
+[data-theme="light"] .social-icons a {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    border-color: var(--border-light);
+}
+
+[data-theme="light"] .social-icons a:hover {
+    background-color: var(--primary-yellow);
+    border-color: var(--primary-yellow);
+    color: var(--primary-black);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
@@ -2047,6 +2120,31 @@ body {
 
     .contact-wrapper {
         grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .contact-info h2 {
+        text-align: center;
+    }
+
+    .contact-info > p {
+        text-align: center;
+    }
+
+    .contact-item {
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-item h3 {
+        text-align: center;
+    }
+
+    .contact-item p {
+        text-align: center;
     }
 
     .services-grid,
@@ -2507,10 +2605,32 @@ body {
         padding: 1.5rem;
     }
 
+    .contact-info {
+        text-align: center;
+    }
+
+    .contact-info h2 {
+        text-align: center;
+    }
+
+    .contact-info > p {
+        text-align: center;
+    }
+
     .contact-item {
         flex-direction: column;
         gap: 0.75rem;
         margin-bottom: 1.5rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-item h3 {
+        text-align: center;
+    }
+
+    .contact-item p {
+        text-align: center;
     }
 
     .contact-icon {
