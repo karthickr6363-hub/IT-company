@@ -87,6 +87,17 @@
     color: var(--primary-black);
 }
 
+[data-theme="light"] .hero-title {
+    background: linear-gradient(135deg, var(--primary-black) 0%, var(--primary-yellow) 50%, var(--primary-black) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: var(--dark-text);
+}
+
 [data-theme="light"] .btn-course {
     background-color: var(--primary-yellow);
     color: var(--primary-black);
